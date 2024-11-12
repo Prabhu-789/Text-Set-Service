@@ -1,0 +1,48 @@
+# version: "3.8"
+
+# services:
+#   db:
+#     image: postgres:15
+#     container_name: psql_db  # Custom name for the PostgreSQL container
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: Teja%401234
+#       POSTGRES_DB: Sample
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     networks:
+#       - app-network
+
+#   web:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: custom_fastapi_app  # Custom name for the FastAPI container
+#     environment:
+#       DATABASE_URL: postgresql://postgres:Teja%401234@db/Sample
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - db
+#     networks:
+#       - app-network
+
+# volumes:
+#   postgres_data:
+
+# networks:
+#   app-network:
+version: '3.8'
+
+services:
+  fastapi-app:
+    build: .
+    container_name: Text_Set_Service
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+    ports:
+      - "8000:8000"
